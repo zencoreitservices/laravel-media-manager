@@ -163,7 +163,7 @@ class Media extends Model
     {
         $storage = Storage::disk(config('media-manager.disk'));
 
-        if ($this->file_type == 'image' && $imageSize) {
+        if ($this->type == 'image' && $imageSize) {
             if ($this->fileExists($imageSize)) {
                 return $storage->url($this->getFilePath($imageSize));
             }
@@ -180,7 +180,7 @@ class Media extends Model
     {
         $storage = Storage::disk(config('media-manager.disk'));
 
-        if ($this->file_type == 'image' && $imageSize) {
+        if ($this->type == 'image' && $imageSize) {
             if ($this->fileExists($imageSize)) {
                 return utf8_encode(
                     file_get_contents(
