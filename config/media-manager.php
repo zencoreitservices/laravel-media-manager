@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'models' => [
+    'classes' => [
         'media' => \Zencoreitservices\MediaManager\Models\Media::class,
+        'image-processor' => \Zencoreitservices\MediaManager\Processors\ImageProcessor::class,
     ],
 
     'disk' => 'public',

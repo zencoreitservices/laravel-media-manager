@@ -28,7 +28,7 @@ class DeleteMediaWithNoFile extends Command
      */
     public function handle()
     {
-        $media = config('media-manager.models.media')::take(50)->inRandomOrder()->get();
+        $media = config('media-manager.classes.media')::take(50)->inRandomOrder()->get();
         foreach ($media as $mediaItem) {
             if (!$mediaItem->fileExists()) {
                 $mediaItem->delete();

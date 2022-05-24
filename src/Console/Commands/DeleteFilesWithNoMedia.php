@@ -43,7 +43,7 @@ class DeleteFilesWithNoMedia extends Command
                         list($name, $extension) = explode('.', $fileName);
 
                         if (
-                            !config('media-manager.models.media')::where([
+                            !config('media-manager.classes.media')::where([
                                 ['type', '=', $masterDirectory],
                                 ['image_type', '=', $imageTypeSlug],
                                 ['name', '=', $name],
@@ -61,7 +61,7 @@ class DeleteFilesWithNoMedia extends Command
                     list($name, $extension) = explode('.', $fileName);
 
                     if (
-                        !config('media-manager.models.media')::where([
+                        !config('media-manager.classes.media')::where([
                             ['type', '=', $masterDirectory],
                             ['image_type', '=', null],
                             ['name', '=', $name],

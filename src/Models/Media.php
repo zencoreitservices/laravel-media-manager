@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Storage;
 use Str;
 use GuzzleHttp\Client;
-use Zencoreitservices\MediaManager\Processors\ImageProcessor;
 
 class Media extends Model
 {
@@ -67,7 +66,8 @@ class Media extends Model
 
             $originalFilePath = $storage->path($media->getFilePath());
 
-            $imageProcessor = new ImageProcessor($originalFilePath);
+            $imageProcessorClass = config('media-manager.classes.image-processor');
+            $imageProcessor = new $imageProcessorClass($originalFilePath);
             foreach (config('media-manager.image-types')[$imageType] as $imageSizeSlug => $imageSize) {
                 $imageProcessor
                     ->resize(
@@ -210,7 +210,8 @@ class Media extends Model
 
         if ($this->type == 'image') {
             $originalFilePath = $storage->path($this->getFilePath());
-            $imageProcessor = new ImageProcessor($originalFilePath);
+            $imageProcessorClass = config('media-manager.classes.image-processor');
+            $imageProcessor = new $imageProcessorClass($originalFilePath);
 
             foreach (config('media-manager.image-types.' . $this->image_type) as $imageSizeSlug => $imageSize) {
                 if (!$this->fileExists($imageSizeSlug)) {
@@ -234,7 +235,8 @@ class Media extends Model
 
         if ($this->type == 'image') {
             $originalFilePath = $storage->path($this->getFilePath());
-            $imageProcessor = new ImageProcessor($originalFilePath);
+            $imageProcessorClass = config('media-manager.classes.image-processor');
+            $imageProcessor = new $imageProcessorClass($originalFilePath);
 
             foreach (config('media-manager.image-types.' . $this->image_type) as $imageSizeSlug => $imageSize) {
                 $imageProcessor
