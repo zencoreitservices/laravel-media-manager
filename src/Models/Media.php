@@ -4,7 +4,6 @@ namespace Zencoreitservices\MediaManager\Models;
 
 use App\Jobs\MediaResizeMissingJob;
 use App\Jobs\MediaResizeAllJob;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Storage;
 use Str;
@@ -12,8 +11,6 @@ use GuzzleHttp\Client;
 
 class Media extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'type',
