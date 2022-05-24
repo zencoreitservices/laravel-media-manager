@@ -96,6 +96,13 @@ class ImageProcessor
         return $this;
     }
 
+    public function crop($width, $height, $x, $y)
+    {
+        $this->image->crop((int)$width, (int)$height, (int)$x, (int)$y);
+        
+        return $this;
+    }
+
     public function save($path)
     {
         $this->image->save($path);

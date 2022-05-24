@@ -293,4 +293,20 @@ class Media extends Model
 
         return $name;
     }
+
+    public function crop($width, $height, $x, $y)
+    {
+        $storage = Storage::disk(config('media-manager.disk'));
+
+        if ($this->type == 'image') {
+            $originalFilePath = $storage->path($this->getFilePath());
+            $imageProcessorClass = config('media-manager.classes.image-processor');
+            $imageProcessor = new $imageProcessorClass($originalFilePath);
+            $imageProcessor
+                ->crop($width, $height, $x, $y)
+                ->save($originalFilePath);
+
+            $this->resizeAllImages();
+        }
+    }
 }
