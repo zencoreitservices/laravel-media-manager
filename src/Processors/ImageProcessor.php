@@ -7,8 +7,8 @@ use Intervention\Image\ImageManager;
 
 class ImageProcessor
 {
-    private $imageManager;
-    private $image;
+    protected $imageManager;
+    protected $image;
 
     public function __construct($path)
     {
@@ -101,7 +101,7 @@ class ImageProcessor
         $this->image->save($path);
     }
 
-    private function calcRatio($a, $b, $c)
+    protected function calcRatio($a, $b, $c)
     {
         return (int)(($a * $b) / $c);
     }
